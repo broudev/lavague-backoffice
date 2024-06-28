@@ -1,0 +1,28 @@
+
+.cart-card{
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    max-width: 793px !important;
+    height: 566px !important;
+    background-image: url(assets/images/fond_carte_verso.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.cart-card .img_photo{
+    width: 180px !important;
+    height: 200px !important;
+    border-radius: 5px !important;
+    border-style: dotted !important;
+    border-color:rgb(236, 219, 150) !important;
+}
+
+.cart-card .img_logo{
+    width: 160px !important;
+    height: 180px !important;
+}
+
+.cart-card .tex-font{
+    font-size: 14px !important;
+}

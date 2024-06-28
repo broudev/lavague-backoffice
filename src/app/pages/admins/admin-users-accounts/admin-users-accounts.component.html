@@ -1,0 +1,163 @@
+<div class="hero-header">
+    <div class="container-fluid">
+        <!-- Row start -->
+        <div class="row gx-3">
+            <div class="col-xxl-12">
+
+            </div>
+        </div>
+        <!-- Row end -->
+    </div>
+</div>
+
+<div class="hero-body">
+    <div class="row gx-3">
+        <div class="col-xxl-12 col-sm-12 col-12">
+            <div class="card">
+
+                <div class="card-header d-flex justify-content-between mb-3">
+                    <h5 class="text-start">Liste des utilisateurs</h5>
+                    <button (click)="openUsersDialog()"
+                        mat-fab extended
+                        color="primary">
+                        <mat-icon>add</mat-icon>
+                        Nouveau
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-4">
+                        <div class="col-xxl-12 col-lg-12 col-md-12">
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-bordered table-striped m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th
+                                                class="text-center">Utilisateur</th>
+
+                                            <th
+                                                class="text-center">Rôle</th>
+                                            <th
+                                                class="text-center">Statut</th>
+                                            <th class="text-center">Date
+                                                de
+                                                création</th>
+                                            <th
+                                                class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (admin_compte of
+                                        list_users_accounts | paginate:
+                                        { itemsPerPage: 10, currentPage:
+                                        p }; track $index) {
+                                        <tr>
+                                            <td>{{ $index +1 }}</td>
+                                            <td class="text-center">
+                                                <div
+                                                    class="d-flex align-items-center">
+                                                    <div
+                                                        [class]="admin_compte.connected == 1? 'avatar avatar-indicators avatar-online me-3': 'avatar avatar-indicators avatar-offline me-3'">
+                                                        <img
+                                                            alt="avatar"
+                                                            src="assets/medias/user.png"
+                                                            class="img-5x rounded-5 me-3" />
+                                                    </div>
+                                                    <div>
+                                                        <p
+                                                            class="m-0 fw-bolder text-primary">
+                                                            {{
+                                                            admin_compte.first_name+' '+
+                                                            admin_compte.last_name
+                                                            }}
+                                                        </p>
+                                                        <p
+                                                            class="m-0 fw-bolder text-red text-center">
+                                                            {{
+                                                            admin_compte.username
+                                                            }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+
+                                            <td
+                                                class="text-center fw-bolder">
+                                                {{ admin_compte.role }}
+                                            </td>
+                                            <td
+                                                class="text-center fw-bolder">
+                                                <mat-slide-toggle
+                                                    (click)="enableOrDisableAccount(admin_compte.slug)"
+                                                    [color]="admin_compte.status == 1?'accent':'warn'"
+                                                    [checked]="admin_compte.status == 1">
+                                                    <span
+                                                        class="text-primary fw-bolder">{{
+                                                        admin_compte.status
+                                                        ==
+                                                        1?'Actif':
+                                                        'Inactif'
+                                                        }}</span>
+                                                </mat-slide-toggle>
+                                            </td>
+                                            <td
+                                                class="text-center fw-bolder">
+                                                {{
+                                                admin_compte.created_at
+                                                |
+                                                transformDate:
+                                                'le dd MMMM YYYY'
+                                                }}
+                                            </td>
+                                            <td class="text-center">
+                                                <button mat-mini-fab
+                                                    color="primary"
+                                                    [matMenuTriggerFor]="beforeMenu">
+                                                    <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                                <mat-menu
+                                                    #beforeMenu="matMenu"
+                                                    xPosition="before">
+                                                    <button
+                                                        mat-menu-item
+                                                        (click)="updateUsers(admin_compte)">
+                                                        <mat-icon>edit_square</mat-icon>
+                                                        Modifier
+                                                    </button>
+
+                                                    <button
+                                                        mat-menu-item
+                                                        (click)="openDeleDialog(admin_compte.slug)">
+                                                        <mat-icon>delete</mat-icon>
+                                                        Supprimer
+                                                    </button>
+                                                </mat-menu>
+                                            </td>
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div text-center mt-4">
+                        <pagination-controls
+                            (pageChange)="p = $event"
+                            previousLabel="Précédent"
+                            nextLabel="Suivant">
+
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner type="ball-circus" size="large" color="#ffd217"
+    [fullScreen]="true">
+    <p style="color: #fff; font-size: 1.2rem"> Chargement en cours... </p>
+</ngx-spinner>

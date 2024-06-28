@@ -1,0 +1,200 @@
+<mat-toolbar   class="mat-elevation-z8 default__toolbar">
+
+    @if (screenWidth < 840) {
+        <button  (click)="drawer.toggle()" class="me-3" mat-mini-fab color="primary">
+            <mat-icon>menu</mat-icon>
+        </button>
+    }
+
+    <img class="img-radius rounded-3" src="assets/medias/lavague.png" width="80" alt="">
+    <span class="default__spacer"></span>
+
+
+
+    <div class="d-flex">
+        <button [matMenuTriggerFor]="userDropleft" mat-button class="text-uppercase text-primary default__btn__lg">
+            <mat-icon>arrow_drop_down</mat-icon>
+            {{ user_name }}
+        </button>
+        @if (photo == undefined) {
+            <img alt="avatar" src="assets/medias/user.png" width="40" height="40" class="img-radius rounded-circle" />
+        }
+        @if (photo != undefined) {
+            <img class="img-radius rounded-circle mb-3" [src]="photo" width="80" height="80" alt="">
+        }
+    </div>
+
+    <mat-menu #userDropleft="matMenu" class="custom_menu_dialog">
+
+        <div class="customer_menu_modal">
+            <div class="customer_menu_modal_header p-3 text-center">
+                <h5 class="text-center fw-bolder">
+                    @if (photo == undefined) {
+                        <img alt="avatar" src="assets/medias/user.png" class="img-5x rounded-5 me-3" />
+                    }
+                    @if (photo != undefined) {
+                        <img class="img-radius rounded-circle mb-3" [src]="photo" width="80" height="80" alt="">
+                    }
+                </h5>
+                <p class="fw-bolder ">Bonjour {{ user_name }} !</p>
+            </div>
+
+            <div class="customer_menu_modal_body">
+
+                <mat-divider></mat-divider>
+
+                <button mat-menu-item (click)="logOut(user_id)" >
+                    <mat-icon class="text-danger">logout</mat-icon>
+                    <span class="text-primary fw-bolder">Se déconnecter</span>
+                </button>
+            </div>
+        </div>
+    </mat-menu>
+</mat-toolbar>
+
+
+
+<mat-drawer-container class="default__drawer__conrainer " >
+    <mat-drawer class="default__drawer customer_bg-warning" #drawer [opened]="screenWidth > 840" [mode]="(screenWidth > 840) ? 'side' : 'over'">
+
+
+        <mat-nav-list class="mt-4">
+            @if(user_role == 'administrateur'){
+
+                @for (item of is_admin_sidebar_menu_list; track $index) {
+                    <div class="ps-0" >
+                        @if (item.label) {
+
+                            <button   mat-raised-button color="primary"
+                                class="
+                                    my-2 py-2 w-100
+                                    mat-elevation-z8
+                                    rounded-0
+                                    text-white
+                                    border-radius-0
+                                    justify-content-start
+                                    fw-bolder text-start
+                                    text-uppercase mt-2">
+                                <mat-icon class="text-white">category</mat-icon>
+                                <span class="text-start">{{ item.label  }}</span>
+                            </button>
+                        }
+
+
+                        <mat-list-item class="fw-bolder text-start">
+                            @if (screenWidth < 992) {
+
+                                <button (click)="drawer.close()" class="fw-bolder w-100 py-2  mat-elevation-z8"
+                                    [routerLink]="item.router" routerLinkActive="active"
+                                    [routerLinkActiveOptions]=" item.id == 1?{exact: true}:{exact: false} " mat-button >
+                                    <mat-icon >{{ item.item_icon }}</mat-icon>
+                                    {{ item.item_name  }}
+                                </button>
+                            }@else {
+                                <button  class="fw-bolder w-100 py-2  mat-elevation-z8"
+                                    [routerLink]="item.router" routerLinkActive="active"
+                                    [routerLinkActiveOptions]=" item.id == 1?{exact: true}:{exact: false} " mat-button >
+                                    <mat-icon >{{ item.item_icon }}</mat-icon>
+                                    {{ item.item_name  }}
+                                </button>
+                            }
+                        </mat-list-item>
+
+
+                    </div>
+                }
+            }
+
+            @if (user_role == 'editeur') {
+                @for (item of is_editeur_sidebar_menu_list; track $index) {
+                    <div class="ps-0" >
+                        @if (item.label) {
+
+                            <button   mat-raised-button color="primary"
+                                class="
+                                    my-2 py-2 w-100
+                                    mat-elevation-z8
+                                    rounded-0
+                                    text-white
+                                    border-radius-0
+                                    justify-content-start
+                                    fw-bolder text-start
+                                    text-uppercase mt-2">
+                                <mat-icon class="text-white">category</mat-icon>
+                                <span class="text-start">{{ item.label  }}</span>
+                            </button>
+                        }
+
+
+                        <mat-list-item class="fw-bolder text-start">
+                            @if (screenWidth < 992) {
+
+                                <button (click)="drawer.close()" class="fw-bolder w-100 py-2  mat-elevation-z8"
+                                    [routerLink]="item.router" routerLinkActive="active"
+                                    [routerLinkActiveOptions]=" item.id == 1?{exact: true}:{exact: false} " mat-button >
+                                    <mat-icon >{{ item.item_icon }}</mat-icon>
+                                    {{ item.item_name  }}
+                                </button>
+                            }@else {
+                                <button  class="fw-bolder w-100 py-2  mat-elevation-z8"
+                                    [routerLink]="item.router" routerLinkActive="active"
+                                    [routerLinkActiveOptions]=" item.id == 1?{exact: true}:{exact: false} " mat-button >
+                                    <mat-icon >{{ item.item_icon }}</mat-icon>
+                                    {{ item.item_name  }}
+                                </button>
+                            }
+                        </mat-list-item>
+
+
+                    </div>
+                }
+            }
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content class="default__content">
+        <div class="page-wrapper">
+
+            <div class="main-container">
+
+                <div class="content-wrapper-scroll">
+                    <div class="main-header d-flex align-items-center justify-content-between position-relative">
+						<div class="d-flex align-items-center justify-content-center">
+							<div class="page-icon">
+                                @if (current_route != '/data-collector') {
+                                    <button  (click)="back()" mat-icon-button>
+                                        <mat-icon>reply</mat-icon>
+                                    </button>
+                                }
+
+                                @if (current_route != '/data-collector') {
+                                    <button  [routerLink]="['/data-collector']" routerLinkActive="router-link-active"  mat-icon-button>
+                                        <mat-icon>home</mat-icon>
+                                    </button>
+                                }
+							</div>
+							<div class="page-title d-md-block">
+								<h5 >Bienvenue sur <strong class="text-danger fw-bolder">la VAGUE</strong></h5>
+							</div>
+						</div>
+
+						<!-- Live updates start -->
+
+						<!-- Live updates end -->
+					</div>
+                    <div class="content-wrapper">
+                        <router-outlet />
+                    </div>
+
+
+
+                </div>
+
+                <div class="app-footer">
+					<span class="fw-bolder fs-5">© <span class="text-danger  fw-bolder fs-5">1000</span> scripts  </span>
+				</div>
+
+            </div>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
+

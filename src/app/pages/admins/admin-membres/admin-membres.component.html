@@ -1,0 +1,229 @@
+
+
+
+<div class="hero-header">
+    <div class="container-fluid">
+        <!-- Row start -->
+        <div class="row gx-3">
+            <div class="col-xxl-12">
+
+            </div>
+        </div>
+        <!-- Row end -->
+    </div>
+</div>
+
+
+<div class="hero-body mb-3 p-0">
+    <div class="row mt-5 mr-5">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <button mat-button class="text-dark fw-bolder ">
+
+                        Liste des membres
+                    </button>
+
+                    <button (click)="openMembresDialog()"
+                        mat-fab extended
+                        color="primary">
+                        <mat-icon>add</mat-icon>
+                        Nouveau
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <div class="row justify-content-between mb-3">
+                        <div class="col-lg-1">
+                            <mat-form-field>
+                                <mat-select>
+                                    <mat-option selected value="20">20</mat-option>
+                                    <mat-option value="30">30</mat-option>
+                                    <mat-option value="40">40</mat-option>
+                                    <mat-option value="50">50</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-2 text-end">
+                            <button mat-mini-fab color="primary"
+                                [matMenuTriggerFor]="beforeMenu">
+                                <mat-icon>print</mat-icon>
+                            </button>
+                            <mat-menu #beforeMenu="matMenu"
+                                xPosition="before">
+
+                                <button (click)="exportToXLSX()"  mat-menu-item>
+                                    Exporter en Excel
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="row justtify-content-between mb-3">
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Rechercher ici...</mat-label>
+                                <input matInput [(ngModel)]="search" placeholder="Rechercher ici..." >
+                                <button mat-mini-fab color="primary" matSuffix (click)="searchInTable()"  >
+                                    <mat-icon>search</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-4 col-md-5 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Filtrer par quartier</mat-label>
+                                <mat-select
+
+                                    (selectionChange)="selectQuartiers($event)">
+                                    <mat-option class="text-uppercase" value="all">Tous les quartiers</mat-option>
+
+                                    @for (item_quartier of list_quartier; track $index) {
+                                        <mat-option [value]="item_quartier.quartiers">{{ item_quartier.quartiers }}</mat-option>
+                                    }
+
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-4 col-md-5 col-sm-12">
+                            <mat-form-field>
+                                <mat-label>Filtrer par lieu de vote</mat-label>
+                                <mat-select
+                                    (selectionChange)="selectLieuVote($event)">
+                                    <mat-option class="text-uppercase" value="all">Tous les lieus de vote</mat-option>
+                                    @for (item_lieu_vote of list_lieu_vote; track $index) {
+                                        <mat-option [value]="item_lieu_vote.lieu_vote">{{ item_lieu_vote.lieu_vote }}</mat-option>
+                                    }
+                                    </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped m-0" id="table_data">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Code</th>
+                                    <th class="text-center">Membres</th>
+                                    <th class="text-center">Sexe</th>
+                                    <th class="text-center">Fonction</th>
+                                    <th class="text-center">D.Naissance </th>
+                                    <th class="text-center">Téléphone</th>
+                                    <th class="text-center">Quartier</th>
+                                    <th class="text-center">Auteur</th>
+                                    <th class="text-center">D.création</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @for (membre of list_membres | paginate: { itemsPerPage: 20, currentPage: p }; track $index) {
+                                    <tr>
+
+                                        <td class="text-center" style="white-space: unset !important;">
+                                            <p  class=" fw-bolder " >
+                                                {{ membre.code_unique }}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                @if (membre.photo == null) {
+                                                    <img alt="avatar" src="assets/medias/user.png"  class="img-2x rounded-5 me-3" />
+                                                }@else {
+                                                    <img [src]="membre.photo" class="img-2x rounded-5 me-3" alt="Employe photo">
+                                                }
+                                                <div>
+
+                                                    <p class="m-0 fw-600 text-primary">
+                                                        {{ membre.first_name + " " + membre.last_name }}
+                                                    </p>
+                                                    <p class="m-0 fw-600 text-red">
+                                                        {{ membre.adresse_email }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <p class=" fw-600 ">{{ membre.genre }}</p>
+
+                                        </td>
+                                        <td class="text-center">
+                                            <p class=" fw-600 ">{{ membre.fonctions }}</p>
+
+                                        </td>
+                                        <td class="text-center"><p class=" fw-600 ">{{ membre.date_naissance | transformDate: 'd MMMM yyyy'  }}</p></td>
+                                        <td class="text-center"><p class=" fw-600 ">{{ membre.phone_number  }}</p></td>
+                                        <td class="text-center"><p class=" fw-600 ">{{ membre.quartiers  }}</p></td>
+
+                                        <td class="text-center">
+                                            {{ membre.author_first_name + " " +  membre.author_last_name }}
+                                        </td>
+
+                                        <td class="text-center">
+                                            <p class=" fw-600">{{ membre.updated_at | transformDate: 'd MMMM yyyy, à HH:mm' }}</p>
+                                        </td>
+
+                                        <td class="text-end">
+                                            <button mat-mini-fab color="primary"
+                                                [matMenuTriggerFor]="beforeMenu">
+                                                <mat-icon>more_vert</mat-icon>
+                                            </button>
+                                            <mat-menu #beforeMenu="matMenu"
+                                                xPosition="before">
+
+                                                <button [disabled]="user_role != 'administrateur'" (click)="showMembreDetails(membre.slug)" mat-menu-item>
+                                                    <mat-icon>visibility</mat-icon>
+                                                    Voir détail
+                                                </button>
+
+                                                <button (click)="openUpdateMembresDialog(membre)" mat-menu-item>
+                                                    <mat-icon>update</mat-icon>
+                                                    Modifier
+                                                </button>
+
+
+
+                                                <button [disabled]="user_role != 'administrateur'" (click)="openDeleDialog(membre.slug)" mat-menu-item>
+                                                    <mat-icon>delete</mat-icon>
+                                                    Supprimer
+                                                </button>
+                                            </mat-menu>
+                                        </td>
+
+                                    </tr>
+                                }
+
+                                @if (list_membres.length == 0) {
+                                    <tr >
+                                        <td colspan="10" class="text-center">
+
+                                            <h1 class="text-center">Aucune données pour le moment</h1>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                        <div class="mt-4 text-center">
+                            <pagination-controls
+                                (pageChange)="p = $event"
+                                previousLabel="Précédent"
+                                nextLabel="Suivant"
+                            >
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<ngx-spinner type = "ball-circus" size = "large" color = "#ffd217" [fullScreen] = "true">
+    <p style="color: #fff; font-size: 1.2rem" > Chargement en cours... </p>
+</ngx-spinner>

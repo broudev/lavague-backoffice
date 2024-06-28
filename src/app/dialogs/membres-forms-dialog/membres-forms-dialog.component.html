@@ -1,0 +1,213 @@
+@if (is_loading == true) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<h4 mat-dialog-title>Veuillez renseigner les champs</h4>
+<div mat-dialog-content style="max-height: 95vh ">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--EMPLOYEE INFORMATION SPACE-->
+            <mat-card  class="example-card rounded">
+
+                <mat-card-content>
+                    <div class="row gx-3 ">
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>Prénom <code
+                                        class="fs-4">*</code></mat-label>
+                                <input [(ngModel)]="first_name"
+                                    matInput
+                                    placeholder="Prénom">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>Nom de famille <code
+                                        class="fs-4">*</code></mat-label>
+                                <input [(ngModel)]="last_name"
+                                    matInput placeholder="Nom de famille">
+                            </mat-form-field>
+                        </div>
+
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>Genre<code
+                                        class="fs-4">*</code></mat-label>
+                                <mat-select
+                                    [(value)]="selectedGenreOption"
+                                    (selectionChange)="selectGenre($event)">
+                                    <mat-option *ngFor="let
+                                        item_genre of
+                                        list_genre"
+                                        [value]="item_genre.genre">{{
+                                        item_genre.genre }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>Date de naissance
+                                    <code class="fs-4">*</code></mat-label>
+                                <input
+                                    [(ngModel)]="date_naissance"
+                                    matInput
+                                    [matDatepicker]="pickerDateNaissance">
+                                <mat-datepicker-toggle matIconSuffix [for]="pickerDateNaissance"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDateNaissance></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>La fonction </mat-label>
+                                <mat-select [(value)]="selectedFonctionsOption" (selectionChange)="selectFonctions($event)">
+                                    @for (item_fonction of list_fonction; track $index) {
+                                        <mat-option [value]="item_fonction.id">{{ item_fonction.fonctions }}</mat-option>
+                                    }
+                                </mat-select>
+
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>Le montant de la cotisation mensuelle </mat-label>
+                                <input readonly [(ngModel)]="montants"
+                                    matInput placeholder="Le montant de la cotisation mensuelle">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>Numéro téléphone
+                                    <code class="fs-4">*</code></mat-label>
+                                <input [(ngModel)]="phone_number" type="tel"
+                                    matInput placeholder="Numéro téléphone">
+                                <mat-icon matSuffix>phone</mat-icon>
+                                <mat-hint align="start"><strong>Format exigé</strong> </mat-hint>
+                                <mat-hint align="end">Ex: +2250000000000</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>La profession </mat-label>
+                                <input [(ngModel)]="profession"
+                                    matInput placeholder="La profession">
+                            </mat-form-field>
+                        </div>
+
+
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>Lieu de résidence ou quartier </mat-label>
+                                <mat-select [(value)]="selectedQuartierOption" (selectionChange)="selectQuartier($event)">
+                                    @for (item_quartier of list_quartier; track $index) {
+                                        <mat-option [value]="item_quartier.quartiers">{{ item_quartier.quartiers }}</mat-option>
+                                    }
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>Lieu de vote </mat-label>
+                                <mat-select [(value)]="selectedLieuVoteOption" (selectionChange)="selectLieuVote($event)">
+                                    @for (item_lieu_vote of list_lieu_vote; track $index) {
+                                        <mat-option [value]="item_lieu_vote.lieu_vote">{{ item_lieu_vote.lieu_vote }}</mat-option>
+                                    }
+                                </mat-select>
+
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>Type de pièce </mat-label>
+                                <mat-select
+                                    [(value)]="selectedPieceOption"
+                                    (selectionChange)="selectPiece($event)">
+                                    @for (item_piece of list_piece; track $index) {
+                                        <mat-option [value]="item_piece.piece">{{ item_piece.piece }}</mat-option>
+                                    }
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-lg-4">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>N° de la pièce d'identité </mat-label>
+                                <input [(ngModel)]="num_carte_identite"
+                                    matInput placeholder="N° de la pièce d'identité ">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-lg-6">
+                            <mat-form-field
+                                appearance="outline">
+                                <mat-label>N° de la carte d'electeur </mat-label>
+                                <input [(ngModel)]="num_carte_electeur"
+                                    matInput placeholder="N° de la carte d'electeur ">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-lg-6">
+                            <input (change)="uploadFile($event)"
+                                class="form-control
+                                form-control-lg" id="formFileLg"
+                                type="file">
+                            <label for="formFileLg"
+                                class="form-label text-danger fw-bolder"> <strong class="text-dark"> Photo d'identité </strong> (N'est pas obligatoire)
+                            </label>
+                        </div>
+
+                        <div class="mt-3 d-flex justify-content-between">
+                            <button mat-fab extended  mat-dialog-close color="warn" class="me-3">
+                                <mat-icon>reply</mat-icon>
+                                Annuler
+                            </button>
+                            @if (is_update == true) {
+                                <button  mat-fab extended color="primary" (click)="updateMembreData()">
+                                    <mat-icon>update</mat-icon>
+                                    Modifier
+                                </button>
+                            }
+                            @if (is_update == false) {
+                                <button  mat-fab extended color="primary" (click)="saveMembreData()">
+                                    <mat-icon>save</mat-icon>
+                                    Enregistrer
+                                </button>
+                            }
+
+                        </div>
+
+
+                    </div>
+
+
+                </mat-card-content>
+
+
+            </mat-card>
+
+            <!--END EMPLOYEE INFORMATION SPACE-->
+        </div>
+    </div>
+</div>

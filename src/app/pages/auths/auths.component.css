@@ -1,0 +1,47 @@
+.auth-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(45deg,#1f7554,#1f7554);
+}
+
+.left-box{
+    background: linear-gradient(180deg,#ffd217,#ffd217);
+}
+
+.auth-wrapper .auth-content:not(.container) {
+    width: 700px;
+}
+
+.auth-wrapper .auth-content {
+    position: relative;
+    padding: 15px;
+    z-index: 5;
+}
+
+
+
+.custom_hr {
+    border: none;
+    border-top: 3px double #1f7554;
+    color: #1f7554;
+    overflow: visible;
+    text-align: center;
+    margin: 2px;
+    height: 5px;
+}
+
+.custom_hr:after {
+    background: #fff;
+    content: 'Authentification';
+    font-size: large;
+    font-weight: 700;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
+}

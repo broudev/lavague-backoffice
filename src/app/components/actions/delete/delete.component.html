@@ -1,0 +1,22 @@
+<div mat-dialog-content>
+    <div class="row mt-2 justify-content-center">
+        <div class="col-md-12 text-center">
+            <img src="assets/alert.svg" width="50" alt="" srcset="">
+            <hr>
+            <p class="text-red fw-bolder fs-5">
+                Attention ! Vous êtes sur le point d'effectuer une suppression.
+            </p>
+        </div>
+
+    </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-between">
+    <button mat-raised-button color="primary" (click)="cancel()">
+        <mat-icon class="mat-18 me-2 f-18">reply</mat-icon>
+        Annuler
+    </button>
+    <button mat-raised-button color="warn" (click)="confirm()">
+        <mat-icon class="mat-18 me-2 f-18">done_all</mat-icon>
+        Confirmer
+    </button>
+</div>

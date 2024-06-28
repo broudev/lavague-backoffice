@@ -1,0 +1,313 @@
+<div class="subscribe-header">
+    <img src="assets/images/bg.jpg" class="img-fluid w-100" alt="Admin &amp;
+        Dashboards">
+</div>
+
+
+<div class="subscriber-body">
+
+    <!-- Row start -->
+    <div class="row justify-content-center mt-3">
+        <div class="col-xl-10 col-lg-12">
+            <!-- Row start -->
+            <div class="row align-items-end">
+                <div class="col-auto">
+                    @if (photo == null) {
+                        <img alt="avatar" src="assets/medias/user.png"  class="img-10xx img-fluid rounded-circle border border-primary border-4" />
+                    }@else {
+                        <img [src]="photo" alt="photo_membre" class="img-10xx img-fluid rounded-circle border border-primary border-4" >
+                    }
+                </div>
+            </div>
+            <!-- Row end -->
+        </div>
+    </div>
+    <!-- Row end -->
+    <div class="row mt-5">
+        <div class="col-xxl-6 col-sm-12 col-md-12 ">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title fs-2">Information personnelle</div>
+                </div>
+                <div class="card-body">
+
+                    <ul class="list-group">
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            Code Unique
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ code_unique }}</span>
+                        </li>
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            Prénom
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ first_name }}</span>
+                        </li>
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            Nom de famille
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ last_name }}</span>
+                        </li>
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            Profession
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ profession }}</span>
+                        </li>
+
+
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            Genre
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ genre }}</span>
+                        </li>
+
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            Lieu de vote
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ lieu_vote }}</span>
+                        </li>
+
+
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            Quartier
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ quartiers }}</span>
+                        </li>
+
+
+
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            Date de naissance
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ date_naissance | date: 'd MMMM yyyy ' }}</span>
+                        </li>
+
+
+
+
+
+
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            Type de pièce
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ piece == "null"?'Aucun' : piece}}</span>
+                        </li>
+
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            N° Pièce d'identité
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ num_carte_identite == "null"?'Aucun' : num_carte_identite  }}</span>
+                        </li>
+
+                        <li class="fs-4 list-group-item d-flex justify-content-between align-items-center">
+                            N° Pièce d'electeur
+                            <span class="badge text-dark fw-bolder rounded-pill">{{ num_carte_electeur == "null"?'Aucun' :num_carte_electeur  }}</span>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-6 col-sm-12 col-md-12">
+            <div class="card">
+                <div class="row  justify-content-center mt-5" id="card-content">
+                    <div class="usr-tasks col-lg-7 col-12">
+                        <div class="card cart-card">
+                            <div class="card-img-overlay">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <div class="text-start">
+                                        <img src="assets/medias/lavague-logo.png" alt="logo_lavague_default" class="img_logo img-fluid" >
+                                    </div>
+
+                                    <div class="text-start">
+                                        @if (photo == null) {
+                                            <img alt="avatar" src="assets/medias/user.png" class="img_photo " />
+                                        }@else {
+                                            <img [src]="photo" alt="photo_membre" class="img_photo  ">
+                                        }
+                                    </div>
+                                </div>
+
+
+                                <div class="mt-1">
+                                    <div class="row justify-content-between">
+                                        <div class="col-lg-12 col-md-12">
+                                            <ul class="list-unstyled text-start">
+
+                                                <li class="fs-h-min-max mb-1">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 tex-font text-black text-uppercase">Nom :</b>
+                                                        <span class=" tex-font fw-bolder text-uppercase ">{{ last_name }}</span>
+                                                    </small>
+                                                </li>
+                                                <li class="fs-h-min-max mb-1">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 tex-font text-black text-uppercase">Prenom(s) :</b>
+                                                        <span class="tex-font fw-bolder text-uppercase ">{{ first_name }}</span>
+                                                    </small>
+                                                </li>
+
+                                                <li class="fs-h-min-max mb-2">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 tex-font text-black text-uppercase">Sexe :</b>
+                                                        <span class="tex-font fw-bolder text-uppercase ">{{ genre }}</span>
+                                                    </small>
+                                                </li>
+
+                                                <li class="fs-h-min-max mb-2">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 tex-font text-black text-uppercase">Fonction : </b>
+                                                        <span class="tex-font fw-bolder text-uppercase ">{{ fonctions }}</span>
+                                                    </small>
+                                                </li>
+
+                                                <li class="fs-h-min-max mb-1">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 text-black tex-font text-uppercase">Profession : </b>
+                                                        <span class="tex-font fw-bolder text-uppercase ">{{ profession }}</span>
+                                                    </small>
+                                                </li>
+                                                <li class="fs-h-min-max mb-1">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 text-black tex-font text-uppercase">Né(e) le :</b>
+                                                        <span class="text-black fw-bolder tex-font text-uppercase ">{{ date_naissance | date: 'dd MMMM yyyy' }}</span>
+                                                    </small>
+                                                </li>
+
+                                                <li class="fs-h-min-max mb-2">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 text-black tex-font text-uppercase">Contact(s) :</b>
+                                                        <span class="text-black fw-bolder tex-font text-uppercase ">{{ phone_number == null?'Aucun':phone_number }}</span>
+                                                    </small>
+                                                </li>
+
+
+
+                                                <li class="fs-h-min-max mb-2">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 text-black tex-font text-uppercase">Lieu de vote : </b>
+                                                        <span class="text-black fw-bolder tex-font text-uppercase ">{{ lieu_vote  }}</span>
+                                                    </small>
+                                                </li>
+
+                                                <li class="fs-h-min-max mb-2">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 text-black tex-font text-uppercase">Quartier : </b>
+                                                        <span class="text-black fw-bolder tex-font text-uppercase">{{ quartiers }}</span>
+                                                    </small>
+                                                </li>
+
+                                                <li class="fs-h-min-max mb-2">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 text-black tex-font text-uppercase">N° de la pièce :</b>
+                                                        <span class="text-black fw-bolder tex-font text-uppercase ">{{ num_carte_identite == "null"?'Aucun': num_carte_identite  }}</span>
+                                                    </small>
+                                                </li>
+
+                                                <li class="fs-h-min-max">
+                                                    <small class="d-flex ">
+                                                        <b class="me-2 text-black tex-font text-uppercase">N° de la carte d'electeur :</b>
+                                                        <span class="text-black tex-font text-uppercase ">{{ num_carte_electeur == "null"?'Aucun': num_carte_electeur }}</span>
+                                                    </small>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    @if (is_print == true) {
+
+                        <div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                    }
+                    <div class="usr-tasks my-4 col-lg-7 col-12">
+                        <div class="card" style="
+                            border-radius: 8px;
+                            max-width: 423px !important;
+                            height: 308px !important;
+                            background-image: url(assets/medias/lavague.png);
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            background-position: center center;
+                        ">
+                            <div class="card-img-overlay">
+                                <div class="d-flex justify-content-center">
+                                    <div class="text-center">
+
+                                    </div>
+                                </div>
+                                <div class="">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+
+
+                <div class="row justify-content-center mb-3">
+                    <div class="col-3 ">
+
+                        <button type="button" (click)="print()" class="btn mx-3 btn-success text-uppercase">
+                            <i class="fa fa-print fa-2x me-1"></i> Imprimer
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<ngx-spinner type = "ball-circus" size = "large" color = "#ffd217" [fullScreen] = "true">
+    <p style="color: #fff; font-size: 1.2rem" > Chargement en cours... </p>
+</ngx-spinner>
+
+
+
+

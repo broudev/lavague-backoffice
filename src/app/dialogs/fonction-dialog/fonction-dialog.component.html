@@ -1,0 +1,45 @@
+@if (is_loading == true) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<h1 mat-dialog-title>Nouvelle fonction</h1>
+
+<div mat-dialog-content>
+    <div class="row mt-2">
+        <div class="col-md-12 col-lg-12">
+            <mat-form-field appearance="outline">
+                <mat-label>La fonction <code class="fs-4">*</code></mat-label>
+                <input [(ngModel)]="fonctions" matInput placeholder="La fonction">
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-12 col-lg-12">
+            <mat-form-field appearance="outline">
+                <mat-label>Le montant <code class="fs-4">*</code></mat-label>
+                <input [(ngModel)]="montants" matInput placeholder="Le montant">
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-between">
+
+    <button mat-fab extended color="primary" mat-dialog-close>
+        <mat-icon>reply</mat-icon>
+        Annuler
+    </button>
+
+    @if (is_update == true) {
+        <button  mat-fab extended color="warn" (click)="updateFonction()">
+            <mat-icon>update</mat-icon>
+            Modifier
+        </button>
+    }
+    @if (is_update == false) {
+        <button  mat-fab extended color="warn" (click)="saveFonction()">
+            <mat-icon>save</mat-icon>
+            Enregistrer
+        </button>
+    }
+</div>
+
+
+
